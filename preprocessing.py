@@ -22,6 +22,16 @@ def load_data(path):
     
     return content, labels, file_names
 
+def load_test_data(path):
+    content = []
+    file_names = []  
+    data = zipfile.ZipFile(path, 'r')
+    for name in data.namelist():
+        content.append(data.read(name).decode('utf-8', errors='ignore'))
+        file_names.append(name) 
+    
+    return content, file_names
+
 def normalize_string(s):
     """Normalizes a string by lowercasing, removing diacritics, removing punctuation and removing non-alphanumeric characters.
     """
